@@ -25,9 +25,23 @@
 */
 
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
+class Triangle {
+  constructor(base,height){
+    this.base = base;
+    this.height = height;
+  }
+}
 
+export const myTriangle1 = new Triangle(10, 5);
+export const myTriangle2 = new Triangle(15, 7);
 
+// Reasignaciones
+myTriangle2.base = myTriangle1.height;
+myTriangle1.height = myTriangle2.height;
 
+// Cálculo de áreas
+export const areaMyTriangle1 = (myTriangle1.base * myTriangle1.height) / 2;
+export const areaMyTriangle2 = (myTriangle2.base * myTriangle2.height) / 2;
 
 
 
