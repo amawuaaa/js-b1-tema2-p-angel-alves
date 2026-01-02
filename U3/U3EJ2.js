@@ -39,6 +39,38 @@
 */
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
 
+class Triangle {
+  constructor(base, height, rightTriangle) {
+    this.base = base;
+    this.height = height;
+    this.rightTriangle = rightTriangle;
+  }
+
+  // Getter área
+  get areaTriangle() {
+    return (this.base * this.height) / 2;
+  }
+
+  // Getter hipotenusa (solo si es rectángulo)
+  get rightHypotenuse() {
+    if (!this.rightTriangle) {
+      return undefined;
+    }
+
+    return Math.sqrt(
+      Math.pow(this.base, 2) + Math.pow(this.height, 2)
+    );
+  }
+
+  // Getter perímetro (solo si es rectángulo)
+  get rightPerimeter() {
+    if (!this.rightTriangle) {
+      return undefined;
+    }
+
+    return this.base + this.height + this.rightHypotenuse;
+  }
+}
 
 
 
