@@ -38,8 +38,22 @@ class Planet {
 }
 
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
+const myJSON = `[
+    { "name": "Mars", "radius": 3389.5 },
+    { "name": "Jupiter", "radius": 69911 },
+    { "name": "Saturn", "radius": 58232 },
+    { "name": "Mercury", "radius": 2439.7 }
+]`;
 
+// Paso B: Convertir JSON a objetos básicos
+const data = JSON.parse(myJSON);
 
+// Paso C: Convertir a instancias de Planet
+// AHORA SÍ FUNCIONARÁ: JS ya leyó la clase arriba, así que sabe qué es "new Planet"
+const planets = data.map(item => new Planet(item.name, item.radius));
+
+// Paso D: Filtrar usando el método estático
+const planetsBTE = Planet.biggerThanEarth(planets);
 
 
 /**
