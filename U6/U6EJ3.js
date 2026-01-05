@@ -22,8 +22,33 @@
 const myJSON = '[{"base":10,"height":5,"rightTriangle":true},{"base":10,"height":8.660254037844386,"rightTriangle":false},{"base":15,"height":7,"rightTriangle":true}]';
 
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
+class Triangle {
+    constructor(base, height, rightTriangle) {
+        this.base = base;
+        this.height = height;
+        this.rightTriangle = rightTriangle;
+    }
 
+    // Método para saber si es equilátero basándonos en base y altura
+    isEquilateral() {
+        // En un equilátero, la altura es base * (raíz de 3 / 2)
+        // Y nunca puede ser un triángulo rectángulo (rightTriangle debe ser false)
+        const expectedHeight = (Math.sqrt(3) / 2) * this.base;
+        
+        // Usamos Math.abs y una diferencia mínima para comparar decimales
+        return Math.abs(this.height - expectedHeight) < 0.0001 && !this.rightTriangle;
+    }
+}
 
+// B. Crear myTriangles (Convertir texto a objetos de la Clase Triangle)
+// Usamos .map para que cada objeto del JSON se convierta en un "new Triangle"
+const myTriangles = JSON.parse(myJSON).map(t => new Triangle(t.base, t.height, t.rightTriangle));
+
+// C. Filtrar los equiláteros (equilateralsTriangles)
+const equilateralsTriangles = myTriangles.filter(t => t.isEquilateral());
+
+// D. Convertir el resultado a texto plano JSON (newTrianglesJSON)
+const newTrianglesJSON = JSON.stringify(equilateralsTriangles);
 
 
 
