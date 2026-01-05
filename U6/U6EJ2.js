@@ -26,7 +26,32 @@ const myJSON= '[{"brand":"Ford","model":"Mustang Boss 429","displacement":7000,"
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
 
 
+/// Definición de la clase (Molde)
+class Car {
+    constructor(brand, model, year) {
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+    }
+    getAge() {
+        return 2026 - this.year;
+    }
+}
 
+// 2. Definir myCars (Convertir texto a objetos Car)
+const myCars = JSON.parse(myJSON);
+
+// 3. Obtener coches con menos de 25 años (Antigüedad < 25)
+// En 2026, un coche de menos de 25 años debe ser de después de 2001
+const lessThan25 = myCars.filter(car => {
+    const age = 2026 - car.year;
+    return age < 25;
+});
+// 4. Pasar el resultado a texto plano JSON
+const newCarsJSON = JSON.stringify(lessThan25);
+
+// Verificación para ti:
+console.log("Coches filtrados en formato texto:", newCarsJSON);
 
 /**
  * TEST
