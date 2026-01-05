@@ -38,10 +38,80 @@
 	Finalment, crea almenys 3 objectes de la classe Triangle i fes 3 trucades a aquests nous mètodes.
 */
 //Escribe aquí tu solución / escriviu aquí la vostra solució:
+//T2: Clases
+//EJERCICIO 2.5.3
 
+// Definición de la clase Triangle
+//T2: Clases
+//U5: Ejercicio 2.5.3
 
+// Definición de la clase Triangle
+export class Triangle {
+  constructor(base, height, rightTriangle) {
+    this.base = base;
+    this.height = height;
+    this.rightTriangle = rightTriangle;
+  }
 
+  // =========================
+  // GETTERS (del ejercicio 2.3.2)
+  // =========================
 
+  // Área del triángulo
+  get areaTriangle() {
+    return (this.base * this.height) / 2;
+  }
+
+  // Hipotenusa (solo si es rectángulo)
+  get rightHypotenuse() {
+    if (!this.rightTriangle) {
+      return undefined;
+    }
+    return Math.sqrt(this.base ** 2 + this.height ** 2);
+  }
+
+  // Perímetro (solo si es rectángulo)
+  get rightPerimeter() {
+    if (!this.rightTriangle) {
+      return undefined;
+    }
+    return this.base + this.height + this.rightHypotenuse;
+  }
+
+  // =========================
+  // MÉTODO DE INSTANCIA
+  // =========================
+
+  // Comprueba si es equilátero
+  isEquilateral() {
+    return this.height === (this.base * Math.sqrt(3)) / 2;
+  }
+
+  // =========================
+  // MÉTODOS DE CLASE (static)
+  // =========================
+
+  // Perímetro exterior de la unión de dos triángulos rectángulos
+  static rightTriangleUnion(t1, t2) {
+    if (!t1.rightTriangle || !t2.rightTriangle) {
+      return undefined;
+    }
+
+    return (
+      t1.rightPerimeter +
+      t2.rightPerimeter +
+      Math.abs(t1.height - t2.height)
+    );
+  }
+
+  // Área de un polígono formado por varios triángulos
+  static areaPoligon(triangles) {
+    return triangles.reduce(
+      (sum, triangle) => sum + triangle.areaTriangle,
+      0
+    );
+  }
+}
 
 
 /**
